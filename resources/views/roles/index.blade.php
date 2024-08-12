@@ -17,15 +17,16 @@
                 <tr>
                     <th>No</th>
                     <th>Name</th>
+                    <th scope="col">Status</th>
                     <th width="280px">Action</th>
                 </tr>
                 @foreach ($roles as $role)
                 <tr>
-                    <td>{{ ++$i }}</td>
+                    <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $role->name }}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}">Edit</a>
-                        <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display:inline;">
+                        <a class="btn btn-primary" href="{{ route('roles.update', $role->id) }}">Edit</a>
+                        <form action="{{ route('roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this role?');" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
