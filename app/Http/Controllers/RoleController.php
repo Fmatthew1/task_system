@@ -49,20 +49,28 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
-    
-        return view('roles.edit', compact('role'));
+        
+         $role = Role::findOrFail($id);
+         return view('roles.update', compact('role'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
+        $role = Role::findOrFail($id);
+        $roleId = Role::find($id);
         $request->validate([
-            'name' => 'required|unique:roles,name,' . $role->id,
+            'name' => 'required|unique:roles,name,max:255' . $role->id,
         ]);
+
+        $input = request();
+        $role = Role::findOrFail($id);
+        $role->name = $input['name'];
+        $role->save();
 
         $role->update($request->all());
 
@@ -73,8 +81,9 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
+        $role = Role::findOrFail($id);
         $role->delete();
 
         return redirect()->route('roles.index')->with('success', 'Role deleted successfully.');
