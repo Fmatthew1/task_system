@@ -24,7 +24,7 @@
                             <label for="name">Role Name:</label>
                             <input type="text" name="name" class="form-control" placeholder="Role Name">
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                        <button type="submit" class="btn btn-primary mt-3">Create</button>
                         <a href="{{ route('roles.index') }}" class="btn btn-secondary mt-3">Back</a>
                     </form>
                 </div>
