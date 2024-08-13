@@ -17,8 +17,8 @@
                 <tr>
                     <th>No</th>
                     <th>Name</th>
-                    <th scope="col">Status</th>
-                    <th width="280px">Action</th>
+                    <th scope="col">Action</th>
+                   
                 </tr>
                 @foreach ($roles as $role)
                 <tr>
